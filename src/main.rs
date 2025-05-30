@@ -45,7 +45,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!();
 
-    for element in document.select(&result_selector) {
+    let results = document.select(&result_selector).collect::<Vec<_>>();
+    if results.len() == 0 {
+        panic!("No results found! There is probably an issue or change made to ecosia so that this tool no longer works, sorry :(");
+    }
+
+    for element in results {
 
         if let Some(result_link_el) = element.select(&result_link_selector).next() {
             let href = result_link_el.value().attr("href").unwrap_or("#");

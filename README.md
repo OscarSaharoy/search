@@ -1,4 +1,4 @@
-# mrs
+# search
 
 This is a small tool that lets you search the web from the command line.
 
